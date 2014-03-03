@@ -23,9 +23,8 @@
             </intent-filter>
         </activity>
         <service
-            android:name="com.iesebre.DAM2.HelloWorldService.MyService"
-            android:enabled="true"
-            android:exported="true" >
+            android:name=".MusicService"
+            android:enabled="true">
         </service>
     </application>
 

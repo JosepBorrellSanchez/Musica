@@ -21,8 +21,8 @@ public class MainActivity extends Activity {
 
 		public void onServiceConnected(ComponentName name, IBinder
 	     service) {
-			ServiceBinder binder = (ServiceBinder) service;
-			mServ = binder.getService();
+			mServ = ((MusicService.ServiceBinder)service).getService();
+			//mServ = binder.getService();
 		}
 
 		public void onServiceDisconnected(ComponentName name) {
@@ -50,19 +50,20 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		doBindService();
-		
 		Button button1 = (Button) findViewById(R.id.button1);
 		Button button2 = (Button) findViewById(R.id.button2);
 		Button button3 = (Button) findViewById(R.id.button3);
 		Button button4 = (Button) findViewById(R.id.button4);
 		
+    	
+    	//mServ.startMusic();
 		button1.setOnClickListener(new View.OnClickListener() {
 		    public void onClick(View arg0)
 		    {
-		    	Intent music = new Intent(getBaseContext(), MusicService.class);
-		    	//music.setClass(MainActivity.this,MusicService.class);
+		    	Intent music = new Intent();
+		    	music.setClass(MainActivity.this,MusicService.class);
 		    	startService(music);
-		    	//mServ.startMusic();
+				mServ = new MusicService();
 		    }
 		});
 		
